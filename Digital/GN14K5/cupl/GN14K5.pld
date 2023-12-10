@@ -1,0 +1,73 @@
+Name     GN14K5.dig ;
+PartNo   00 ;
+Date     05.05.2024 ;
+Revision 01 ;
+Designer Gert Nutterts ;
+Company  Nutronics ;
+Assembly None ;
+Location Netherlands ;
+Device   g22v10 ;
+
+sp = 'b'0 ;
+
+/* inputs */
+PIN 1 = CLK;
+PIN 2 = DI;
+PIN 3 = INST_0;
+PIN 4 = INST_1;
+PIN 5 = INST_2;
+PIN 6 = INST_3;
+PIN 7 = RST;
+ar = !RST;
+
+/* outputs */
+PIN 18 = RETn;
+PIN 17 = MEMn;
+PIN 16 = SKZn;
+PIN 15 = RBTn;
+PIN 14 = HLTn;
+PIN 19 = JMPn;
+PIN 22 = WEn;
+PIN 20 = Carryn;
+PIN 21 = Resultn;
+PIN 23 = DO;
+
+/* sequential logic */
+Carryn.D = (Carryn & DI & !INST_0 & INST_1) # (Carryn & INST_1 & Resultn) # (Carryn & INST_0 & !INST_1) 
+     # (Carryn & !DI & INST_0) # (Carryn & !INST_1 & !INST_2) # (Carryn & INST_1 & INST_2) 
+     # (Carryn & SKZn) # (Carryn & INST_3) # (!DI & INST_0 & INST_1 & !INST_2 & !INST_3 & Resultn & !SKZn) 
+     # (DI & !INST_0 & INST_1 & !INST_2 & !INST_3 & Resultn & !SKZn);
+Carryn.ar = ar ;
+Carryn.sp = sp ;
+HLTn.D = INST_0 & INST_1 & INST_2 & INST_3 & !SKZn;
+HLTn.ar = ar ;
+HLTn.sp = sp ;
+JMPn.D = !INST_0 & INST_1 & !INST_2 & INST_3 & !SKZn;
+JMPn.ar = ar ;
+JMPn.sp = sp ;
+MEMn.D = !INST_0 & !INST_1 & INST_2 & INST_3 & !SKZn;
+MEMn.ar = ar ;
+MEMn.sp = sp ;
+RBTn.D = !INST_0 & INST_1 & INST_2 & INST_3 & !SKZn;
+RBTn.ar = ar ;
+RBTn.sp = sp ;
+RETn.D = INST_0 & INST_1 & !INST_2 & INST_3 & !SKZn;
+RETn.ar = ar ;
+RETn.sp = sp ;
+Resultn.D = (Carryn & !DI & INST_1 & !INST_2 & !INST_3 & !Resultn & !SKZn) # (!Carryn & DI & INST_1 & !INST_3 & !Resultn & !SKZn) 
+     # (!Carryn & !DI & INST_1 & Resultn) # (Carryn & DI & !INST_2 & Resultn) # (DI & INST_0 & !INST_1 & !INST_2 & !INST_3 & !SKZn) 
+     # (DI & INST_2 & !INST_3 & !Resultn & !SKZn) # (DI & !INST_0 & INST_2 & !INST_3 & !SKZn) 
+     # (!DI & INST_2 & Resultn) # (!INST_0 & !INST_1 & Resultn) # (!INST_1 & INST_2 & !INST_3 & !Resultn & !SKZn) 
+     # (INST_3 & Resultn) # (Resultn & SKZn);
+Resultn.ar = ar ;
+Resultn.sp = sp ;
+SKZn.D = INST_0 & !INST_1 & INST_2 & INST_3 & !Resultn & !SKZn;
+SKZn.ar = ar ;
+SKZn.sp = sp ;
+WEn.D = !INST_1 & !INST_2 & INST_3 & !SKZn;
+WEn.ar = ar ;
+WEn.sp = sp ;
+
+/* combinatorial logic */
+DO = (INST_0 & !INST_1 & !INST_2 & INST_3 & !Resultn & !SKZn) # (!INST_0 & Resultn) # (INST_1 & Resultn) 
+     # (INST_2 & Resultn) # (!INST_3 & Resultn) # (Resultn & SKZn);
