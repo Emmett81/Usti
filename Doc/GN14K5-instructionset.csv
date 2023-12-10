@@ -1,0 +1,17 @@
+Hex,Bin,OpCode,Description,Operation
+0,0000,NOP,No change in state,^NOP
+1,0001,LD,Load RR with Di,RR = (Di & IEN)
+2,0010,ADD,Add Di and RR.,RR = (Di & IEN) + RR [with carry]
+3,0011,SUB,Subtract Di and RR.,RR = (Di & IEN) - RR [with borrow]
+4,0100,ONE,"Force 1 into RR, reset carry/borrow flag.","RR = 1, F = 0"
+5,0101,NAND,NAND Di and RR.,RR = (Di & IEN) NAND RR
+6,0110,OR,OR Di and RR.,RR = (Di & IEN) OR RR
+7,0111,XOR,XOR Di and RR.,RR = (Di & IEN) XOR RR
+8,1000,STO,Store result register.,"^RW, Do = RR, WE = (STO & OEN)"
+9,1001,STOC,Store inverted result register.,"^RW, Do = !RR, WE = (STOC & OEN)"
+A,1010,IEN,Input enable.,IEN = Di
+B,1011,OEN,Output enable.,OEN = Di
+C,1100,CALL/JMP,"See ""I/O-architecture""",^CALL
+D,1101,RET,"See ""I/O-architecture""",^RET
+E,1110,SKZ,Skip next instruction if RR is zero.,IF RR==0 { INST = NOP }
+F,1111,LDA/STM/MTS,"See ""I/O-architecture""",^MEM

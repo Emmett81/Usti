@@ -1,0 +1,175 @@
+%SIGNAL
+PIN  23 =  CALLn 
+PIN   1 =  CLK 
+PIN  18 =  Carryn 
+PIN   9 =  D_I 
+PIN  17 =  D_O 
+PIN   7 =  INST_0 
+PIN   6 =  INST_1 
+PIN   5 =  INST_2 
+PIN   4 =  INST_3 
+PIN  15 =  Input_ENn 
+PIN  20 =  MEMn 
+PIN  14 =  Output_ENn 
+PIN  22 =  RETn 
+PIN  11 =  RST 
+PIN  19 =  Resultn 
+PIN   2 =  SKP 
+PIN  21 =  SKZn 
+PIN  16 =  WEn 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+CALLn.d  =>
+    !INST_0 & !INST_1 & INST_2 & INST_3 & !SKP & SKZn
+
+CALLn.ar Carryn.ar Input_ENn.ar MEMn.ar Output_ENn.ar RETn.ar Resultn.ar SKZn.ar WEn.ar  =>
+    !RST
+
+CALLn.sp Carryn.sp Input_ENn.sp MEMn.sp Output_ENn.sp RETn.sp Resultn.sp SKZn.sp WEn.sp  =>
+    0 
+
+Carryn.d  =>
+    !Carryn & D_I & !INST_0 & INST_1 & !Input_ENn
+  # !Carryn & INST_1 & !Resultn
+  # !Carryn & INST_0 & Input_ENn
+  # !Carryn & INST_0 & !INST_1
+  # !Carryn & !D_I & INST_0
+  # !Carryn & !INST_1 & !INST_2
+  # !Carryn & INST_1 & INST_2
+  # !Carryn & !SKZn
+  # !Carryn & SKP
+  # !Carryn & INST_3
+  # D_I & !INST_0 & INST_1 & !INST_2 & !INST_3 & !Input_ENn & !Resultn & !SKP & SKZn
+  # !D_I & INST_0 & INST_1 & !INST_2 & !INST_3 & !Resultn & !SKP & SKZn
+  # INST_0 & INST_1 & !INST_2 & !INST_3 & Input_ENn & !Resultn & !SKP & SKZn
+
+Carryn.ar  =>
+    
+Carryn.sp  =>
+    
+D_O =>
+    INST_0 & !INST_1 & !INST_2 & INST_3 & Resultn & !SKP & SKZn
+  # !INST_0 & !Resultn
+  # INST_1 & !Resultn
+  # INST_2 & !Resultn
+  # !INST_3 & !Resultn
+  # !Resultn & !SKZn
+  # !Resultn & SKP
+
+Input_ENn.d  =>
+    D_I & !INST_0 & INST_1 & !INST_2 & INST_3 & !SKP & SKZn
+  # INST_0 & !Input_ENn
+  # !INST_1 & !Input_ENn
+  # INST_2 & !Input_ENn
+  # !INST_3 & !Input_ENn
+  # !Input_ENn & !SKZn
+  # !Input_ENn & SKP
+
+Input_ENn.ar  =>
+    
+Input_ENn.sp  =>
+    
+MEMn.d  =>
+    INST_0 & INST_1 & INST_2 & INST_3 & !SKP & SKZn
+
+MEMn.ar  =>
+    
+MEMn.sp  =>
+    
+Output_ENn.d  =>
+    D_I & INST_0 & INST_1 & !INST_2 & INST_3 & !SKP & SKZn
+  # !INST_0 & !Output_ENn
+  # !INST_1 & !Output_ENn
+  # INST_2 & !Output_ENn
+  # !INST_3 & !Output_ENn
+  # !Output_ENn & !SKZn
+  # !Output_ENn & SKP
+
+Output_ENn.ar  =>
+    
+Output_ENn.sp  =>
+    
+RETn.d  =>
+    INST_0 & !INST_1 & INST_2 & INST_3 & !SKP & SKZn
+
+RETn.ar  =>
+    
+RETn.sp  =>
+    
+Resultn.d  =>
+    !Carryn & INST_1 & !INST_2 & !INST_3 & Input_ENn & Resultn & !SKP & SKZn
+  # Carryn & D_I & INST_1 & !INST_3 & !Input_ENn & Resultn & !SKP & SKZn
+  # !Carryn & !D_I & INST_1 & !INST_2 & !INST_3 & Resultn & !SKP & SKZn
+  # !Carryn & D_I & !INST_2 & !Input_ENn & !Resultn
+  # Carryn & INST_1 & Input_ENn & !Resultn
+  # Carryn & !D_I & INST_1 & !Resultn
+  # D_I & INST_0 & !INST_1 & !INST_2 & !INST_3 & !Input_ENn & !SKP & SKZn
+  # D_I & INST_2 & !INST_3 & !Input_ENn & Resultn & !SKP & SKZn
+  # D_I & !INST_0 & INST_2 & !INST_3 & !Input_ENn & !SKP & SKZn
+  # !D_I & INST_2 & !Resultn
+  # !INST_0 & !INST_1 & !Resultn
+  # !INST_1 & INST_2 & !INST_3 & Resultn & !SKP & SKZn
+  # INST_2 & Input_ENn & !Resultn
+  # INST_3 & !Resultn
+  # !Resultn & !SKZn
+  # !Resultn & SKP
+
+Resultn.ar  =>
+    
+Resultn.sp  =>
+    
+SKZn.d  =>
+    !INST_0 & INST_1 & INST_2 & INST_3 & Resultn & !SKP & SKZn
+
+SKZn.ar  =>
+    
+SKZn.sp  =>
+    
+WEn.d  =>
+    !INST_1 & !INST_2 & INST_3 & !Output_ENn & !SKP & SKZn
+
+WEn.ar  =>
+    
+WEn.sp  =>
+    
+ar =>
+    !RST
+
+sp =>
+    0 
+
+CALLn.oe  =>
+    1 
+
+Carryn.oe  =>
+    1 
+
+D_O.oe  =>
+    1 
+
+Input_ENn.oe  =>
+    1 
+
+MEMn.oe  =>
+    1 
+
+Output_ENn.oe  =>
+    1 
+
+RETn.oe  =>
+    1 
+
+Resultn.oe  =>
+    1 
+
+SKZn.oe  =>
+    1 
+
+WEn.oe  =>
+    1 
+
+%END

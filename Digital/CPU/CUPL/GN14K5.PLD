@@ -1,0 +1,84 @@
+Name     GN14K5.dig ;
+PartNo   00 ;
+Date     18.12.2023 ;
+Revision 01 ;
+Designer gert ;
+Company  unknown ;
+Assembly None ;
+Location unknown ;
+Device   g22v10 ;
+
+/* inputs */
+PIN 1	= CLK;
+PIN 2	= SKP;
+PIN 4	= INST_3;
+PIN 5	= INST_2;
+PIN 6	= INST_1;
+PIN 7	= INST_0;
+PIN 9	= D_I;
+PIN 11	= RST;
+
+/* outputs */
+PIN 23 = CALLn;
+PIN 22 = RETn;
+PIN 21 = SKZn;
+PIN 20 = MEMn;
+PIN 14 = Output_ENn;
+PIN 15 = Input_ENn;
+PIN 18 = Carryn;
+PIN 19 = Resultn;
+PIN 17 = D_O;
+PIN 16 = WEn;
+
+
+/* buildin */
+ar = !RST;
+sp = 'b'0 ;
+
+/* sequential logic */
+CALLn.D = !INST_0 & !INST_1 & INST_2 & INST_3 & !SKP & !SKZn;
+CALLn.ar = ar ;
+CALLn.sp = sp ;
+Carryn.D = (Carryn & D_I & !INST_0 & INST_1 & Input_ENn) # (Carryn & INST_1 & Resultn) # (Carryn & INST_0 & !Input_ENn) 
+     # (Carryn & INST_0 & !INST_1) # (Carryn & !D_I & INST_0) # (Carryn & !INST_1 & !INST_2) 
+     # (Carryn & INST_1 & INST_2) # (Carryn & SKZn) # (Carryn & SKP) # (Carryn & INST_3) 
+     # (D_I & !INST_0 & INST_1 & !INST_2 & !INST_3 & Input_ENn & Resultn & !SKP & !SKZn) 
+     # (!D_I & INST_0 & INST_1 & !INST_2 & !INST_3 & Resultn & !SKP & !SKZn) # (INST_0 & INST_1 & !INST_2 & !INST_3 & !Input_ENn & Resultn & !SKP & !SKZn);
+Carryn.ar = ar ;
+Carryn.sp = sp ;
+Input_ENn.D = (D_I & !INST_0 & INST_1 & !INST_2 & INST_3 & !SKP & !SKZn) # (INST_0 & Input_ENn) 
+     # (!INST_1 & Input_ENn) # (INST_2 & Input_ENn) # (!INST_3 & Input_ENn) # (Input_ENn & SKZn) 
+     # (Input_ENn & SKP);
+Input_ENn.ar = ar ;
+Input_ENn.sp = sp ;
+MEMn.D = INST_0 & INST_1 & INST_2 & INST_3 & !SKP & !SKZn;
+MEMn.ar = ar ;
+MEMn.sp = sp ;
+Output_ENn.D = (D_I & INST_0 & INST_1 & !INST_2 & INST_3 & !SKP & !SKZn) # (!INST_0 & Output_ENn) 
+     # (!INST_1 & Output_ENn) # (INST_2 & Output_ENn) # (!INST_3 & Output_ENn) # (Output_ENn & SKZn) 
+     # (Output_ENn & SKP);
+Output_ENn.ar = ar ;
+Output_ENn.sp = sp ;
+RETn.D = INST_0 & !INST_1 & INST_2 & INST_3 & !SKP & !SKZn;
+RETn.ar = ar ;
+RETn.sp = sp ;
+Resultn.D = (Carryn & INST_1 & !INST_2 & !INST_3 & !Input_ENn & !Resultn & !SKP & !SKZn) # (!Carryn & D_I & INST_1 & !INST_3 & Input_ENn & !Resultn & !SKP & !SKZn) 
+     # (Carryn & !D_I & INST_1 & !INST_2 & !INST_3 & !Resultn & !SKP & !SKZn) # (Carryn & D_I & !INST_2 & Input_ENn & Resultn) 
+     # (!Carryn & INST_1 & !Input_ENn & Resultn) # (!Carryn & !D_I & INST_1 & Resultn) 
+     # (D_I & INST_0 & !INST_1 & !INST_2 & !INST_3 & Input_ENn & !SKP & !SKZn) # (D_I & INST_2 & !INST_3 & Input_ENn & !Resultn & !SKP & !SKZn) 
+     # (D_I & !INST_0 & INST_2 & !INST_3 & Input_ENn & !SKP & !SKZn) # (!D_I & INST_2 & Resultn) 
+     # (!INST_0 & !INST_1 & Resultn) # (!INST_1 & INST_2 & !INST_3 & !Resultn & !SKP & !SKZn) 
+     # (INST_2 & !Input_ENn & Resultn) # (INST_3 & Resultn) # (Resultn & SKZn) # (Resultn & SKP);
+Resultn.ar = ar ;
+Resultn.sp = sp ;
+SKZn.D = !INST_0 & INST_1 & INST_2 & INST_3 & !Resultn & !SKP & !SKZn;
+SKZn.ar = ar ;
+SKZn.sp = sp ;
+WEn.D = !INST_1 & !INST_2 & INST_3 & Output_ENn & !SKP & !SKZn;
+WEn.ar = ar ;
+WEn.sp = sp ;
+
+/* combinatorial logic */
+D_O = (INST_0 & !INST_1 & !INST_2 & INST_3 & !Resultn & !SKP & !SKZn) # (!INST_0 & Resultn) 
+     # (INST_1 & Resultn) # (INST_2 & Resultn) # (!INST_3 & Resultn) # (Resultn & SKZn) 
+     # (Resultn & SKP);
