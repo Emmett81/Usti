@@ -1,11 +1,11 @@
 Name     GN14K5.dig ;
 PartNo   00 ;
 Date     18.12.2023 ;
-Revision 01 ;
-Designer gert ;
-Company  unknown ;
+Revision 00 ;
+Designer Gert Nutterts ;
+Company  Nutronics ;
 Assembly None ;
-Location unknown ;
+Location Netherlands ;
 Device   g22v10 ;
 
 /* inputs */
@@ -23,12 +23,12 @@ PIN 23 = CALLn;
 PIN 22 = RETn;
 PIN 21 = SKZn;
 PIN 20 = MEMn;
-PIN 14 = Output_ENn;
-PIN 15 = Input_ENn;
-PIN 18 = Carryn;
 PIN 19 = Resultn;
+PIN 18 = Carryn;
 PIN 17 = D_O;
 PIN 16 = WEn;
+PIN 15 = Input_ENn;
+PIN 14 = Output_ENn;
 
 
 /* buildin */

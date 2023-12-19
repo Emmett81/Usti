@@ -19,7 +19,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>INST</string>
+          <string>I</string>
         </entry>
         <entry>
           <string>Bits</string>
@@ -232,7 +232,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>Out</string>
+          <string>O</string>
         </entry>
       </elementAttributes>
       <pos x="2820" y="-180"/>
@@ -262,7 +262,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A</string>
+          <string>D</string>
         </entry>
       </elementAttributes>
       <pos x="1140" y="-80"/>
@@ -272,7 +272,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>B</string>
+          <string>R</string>
         </entry>
       </elementAttributes>
       <pos x="1140" y="140"/>
@@ -725,6 +725,28 @@
         </entry>
       </elementAttributes>
       <pos x="2180" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Rectangle</elementName>
+      <elementAttributes>
+        <entry>
+          <string>textFontSize</string>
+          <int>60</int>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>GN14K5-ALU</string>
+        </entry>
+        <entry>
+          <string>RectHeight</string>
+          <int>69</int>
+        </entry>
+        <entry>
+          <string>RectWidth</string>
+          <int>95</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1040" y="-580"/>
     </visualElement>
   </visualElements>
   <wires>
