@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <circuit>
   <version>2</version>
-  <attributes/>
+  <attributes>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+    <entry>
+      <string>Width</string>
+      <int>6</int>
+    </entry>
+  </attributes>
   <visualElements>
     <visualElement>
       <elementName>Clock</elementName>
@@ -95,14 +106,14 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>WE</string>
+          <string>DO</string>
         </entry>
         <entry>
           <string>pinNumber</string>
-          <string>22</string>
+          <string>23</string>
         </entry>
       </elementAttributes>
-      <pos x="-320" y="940"/>
+      <pos x="-320" y="520"/>
     </visualElement>
     <visualElement>
       <elementName>Register</elementName>
@@ -290,42 +301,42 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>MEM</string>
+          <string>WE</string>
         </entry>
         <entry>
           <string>pinNumber</string>
-          <string>17</string>
+          <string>22</string>
         </entry>
       </elementAttributes>
-      <pos x="-320" y="1240"/>
+      <pos x="-320" y="940"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>RBT</string>
+          <string>R</string>
         </entry>
         <entry>
           <string>pinNumber</string>
-          <string>15</string>
+          <string>21</string>
         </entry>
       </elementAttributes>
-      <pos x="-320" y="1440"/>
+      <pos x="-320" y="400"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>HLT</string>
+          <string>C</string>
         </entry>
         <entry>
           <string>pinNumber</string>
-          <string>14</string>
+          <string>20</string>
         </entry>
       </elementAttributes>
-      <pos x="-320" y="1540"/>
+      <pos x="-320" y="640"/>
     </visualElement>
     <visualElement>
       <elementName>Multiplexer</elementName>
@@ -385,14 +396,14 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>DO</string>
+          <string>MEM</string>
         </entry>
         <entry>
           <string>pinNumber</string>
-          <string>23</string>
+          <string>17</string>
         </entry>
       </elementAttributes>
-      <pos x="-320" y="520"/>
+      <pos x="-320" y="1240"/>
     </visualElement>
     <visualElement>
       <elementName>And</elementName>
@@ -419,34 +430,6 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>C</string>
-        </entry>
-        <entry>
-          <string>pinNumber</string>
-          <string>20</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-320" y="640"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>R</string>
-        </entry>
-        <entry>
-          <string>pinNumber</string>
-          <string>21</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-320" y="400"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Out</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
           <string>SKZ</string>
         </entry>
         <entry>
@@ -455,6 +438,34 @@
         </entry>
       </elementAttributes>
       <pos x="-320" y="1340"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>RBT</string>
+        </entry>
+        <entry>
+          <string>pinNumber</string>
+          <string>15</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="1440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>HLT</string>
+        </entry>
+        <entry>
+          <string>pinNumber</string>
+          <string>14</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-320" y="1540"/>
     </visualElement>
     <visualElement>
       <elementName>Testcase</elementName>
@@ -570,20 +581,6 @@
         </entry>
       </elementAttributes>
       <pos x="-1760" y="460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>~RST</string>
-        </entry>
-        <entry>
-          <string>pinNumber</string>
-          <string>7</string>
-        </entry>
-      </elementAttributes>
-      <pos x="-2080" y="740"/>
     </visualElement>
   </visualElements>
   <wires>
